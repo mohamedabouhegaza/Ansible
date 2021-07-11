@@ -1,0 +1,11 @@
+---
+- name: Config IOS
+  gather_facts: no
+  hosts: R1
+  connection: network_cli
+
+  tasks:
+    - name: Basic config
+      ios_config:
+        backup: yes
+...
