@@ -1,0 +1,18 @@
+---
+- name: Config IOS
+  gather_facts: no
+  hosts: R1
+  connection: network_cli
+
+  tasks:
+    - name: Basic config
+      ios_config:
+        save_when: modified
+        lines:
+          - router bgp 222
+
+      register: output
+
+    - name: printing at the console
+      debug: var=output
+...

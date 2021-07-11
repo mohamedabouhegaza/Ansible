@@ -1,0 +1,15 @@
+---
+- name: runing show
+  hosts: R1
+  gather_facts: no
+  connection: network_cli
+
+  tasks:
+    - name: Run privileged commands
+      ios_command:
+        commands:
+          - show version
+      register: print_output
+
+    - debug: var=print_output.stdout_lines
+...

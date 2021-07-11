@@ -1,0 +1,19 @@
+---
+- name: runing show
+  hosts: R1
+  gather_facts: no
+  connection: network_cli
+
+  tasks:
+    - name: Run privileged commands
+      ios_command:
+        commands:
+          - show version
+      register: my_config
+
+
+    - name: Save output to file on Disk
+      copy:
+        content: "{{my_config.stdout[0]}}"
+        dest: "/home/test/Desktop/ansible_1/{{inventory_hostname}}.txt"
+...
